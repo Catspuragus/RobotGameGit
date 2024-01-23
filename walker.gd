@@ -72,9 +72,17 @@ func place_room(position):
 					step_history.append(new_step)
 	
 func get_end_room():
-	var end_room = rooms.pop_front()
+	var end_room = rooms.front()
 	var starting_position = step_history.front()
 	for room in rooms:
 		if starting_position.distance_to(room.position) > starting_position.distance_to(end_room.position):
 			end_room = room
 	return end_room
+
+func random_room(final_room):
+	var temp_rooms = rooms
+	var starting_room_temp = temp_rooms.pop_front()
+	
+	temp_rooms.remove_at(temp_rooms.find(final_room))
+	temp_rooms.shuffle()
+	return temp_rooms

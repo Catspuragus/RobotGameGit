@@ -42,12 +42,11 @@ func generate_level():
 	var exit = Exit.instantiate()
 	add_child(exit)
 	
-	exit.position = walker.get_end_room().position*32
+	var end_room = walker.get_end_room()
+	exit.position = end_room.position*32
 #	exit.connect("leaving_level", self, "reload_level")
 
-	var gun = Gun.instantiate()
-	add_child(gun)
-	gun.global_position = map.front()*32
+	
 	
 	var gun2 = Pistol.instantiate()
 	add_child(gun2)
@@ -70,3 +69,18 @@ func generate_level():
 	tileMap.set_cells_terrain_connect(0,cells,0,-1)
 	
 #	tileMap.update_bitmask_region(borders.position,borders.end)
+	
+	var temp_rooms = walker.random_room(end_room)
+	
+	for room in temp_rooms:
+#		tileMap2.set_cell(0,room.position,0,Vector2i(0,0),0)
+		var top_left_corner = (room.position - room.size/2).ceil()
+		for y in room.size.y:
+			for x in room.size.x:
+				var new_step = top_left_corner + Vector2(x,y)
+				var new_step2 = new_step*32
+				if borders.has_point(new_step) && new_step2.distance_to(player.global_position) > 150:
+					if randf() <= .5:
+						var gun = Gun.instantiate()
+						add_child(gun)
+						gun.global_position = new_step2

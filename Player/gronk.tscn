@@ -273,12 +273,12 @@ states/Start/position = Vector2(219, 113)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_06tbi"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_r8aya"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_ddw2l"), "Run", "End", SubResource("AnimationNodeStateMachineTransition_qav5h"), "Dodge", "Idle", SubResource("AnimationNodeStateMachineTransition_q61bw"), "Dodge", "Run", SubResource("AnimationNodeStateMachineTransition_xugyd"), "Run", "Dodge", SubResource("AnimationNodeStateMachineTransition_sw40a"), "Idle", "Dodge", SubResource("AnimationNodeStateMachineTransition_jhaan")]
 graph_offset = Vector2(-356, -120)
 
-[sub_resource type="Gradient" id="Gradient_ip7nw"]
+[sub_resource type="Gradient" id="Gradient_p8eld"]
 offsets = PackedFloat32Array(0, 0.664516)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3tpf8"]
-gradient = SubResource("Gradient_ip7nw")
+gradient = SubResource("Gradient_p8eld")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 

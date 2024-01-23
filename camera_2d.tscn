@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://7fg70uy5mm2e"]
 
 [node name="Camera2D" type="Camera2D"]
-zoom = Vector2(4, 4)
 drag_left_margin = 0.1
 drag_top_margin = 0.1
 drag_right_margin = 0.1
