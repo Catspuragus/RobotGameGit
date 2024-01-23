@@ -44,11 +44,7 @@ func move_state():
 		velocity = velocity.move_toward(Vector2.ZERO,friction)
 	
 	move_and_slide()
-	
-	if Input.is_action_just_pressed("L_Click"):
-#		state = ATTACK
-		pass
-		
+
 	if Input.is_action_just_pressed("ordE"):
 		if can_pick_up == true:
 			pickup_weapon()
@@ -99,9 +95,13 @@ func roll_state():
 	move_and_slide()
 	if $RollTime.is_stopped() == true:
 		$RollTime.start(.6)
-	
-	
+
 func _physics_process(_delta):
+	if Input.is_action_pressed("L_Click"):
+		$Laser.firing = 1
+	else:
+		$Laser.firing = 0
+		
 	do_animation(_delta)
 	match state:
 		MOVE:
@@ -120,5 +120,3 @@ func _on_roll_time_timeout():
 	print("OK")
 	$RollTime.stop()
 	pass # Replace with function body.
-	
-
