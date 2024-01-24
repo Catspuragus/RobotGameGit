@@ -1,9 +1,10 @@
-[gd_scene load_steps=42 format=3 uid="uid://d3ove05sdglrd"]
+[gd_scene load_steps=43 format=3 uid="uid://d3ove05sdglrd"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_5iagg"]
 [ext_resource type="Texture2D" uid="uid://dhrta03h1dfpk" path="res://Player/gronk_idle.png" id="2_32mb4"]
 [ext_resource type="Script" path="res://PointLight2D.gd" id="3_diesk"]
 [ext_resource type="PackedScene" uid="uid://df4hcvktd4sid" path="res://laser.tscn" id="4_bggtt"]
+[ext_resource type="Texture2D" uid="uid://bdho65246fnu8" path="res://roboRunRight.png" id="5_65lb4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4go12"]
 radius = 2.0
@@ -326,5 +327,15 @@ offset = Vector2(0, -4)
 script = ExtResource("3_diesk")
 
 [node name="RollTime" type="Timer" parent="." groups=["player"]]
+
+[node name="RoboRunRight" type="Sprite2D" parent="."]
+position = Vector2(33, -9)
+texture = ExtResource("5_65lb4")
+hframes = 8
+
+[node name="RoboRunRight2" type="Sprite2D" parent="."]
+position = Vector2(33, -9)
+texture = ExtResource("5_65lb4")
+hframes = 8
 
 [connection signal="timeout" from="RollTime" to="." method="_on_roll_time_timeout"]

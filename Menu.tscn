@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3rqmxn6yhjtq"]
 
 [ext_resource type="Script" path="res://MainMenu.gd" id="1_inc1e"]
-[ext_resource type="Texture2D" uid="uid://dh6scl5ljy0ik" path="res://titletest.png" id="2_vb7p7"]
+[ext_resource type="Texture2D" uid="uid://2p2vo05yex4x" path="res://robot_swag.png" id="2_nonx8"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,11 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_inc1e")
-
-[node name="Titletest" type="Sprite2D" parent="."]
-position = Vector2(704, 272)
-scale = Vector2(5.14, 5.14)
-texture = ExtResource("2_vb7p7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -43,6 +38,11 @@ text = "Options"
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
+
+[node name="RobotSwag" type="Sprite2D" parent="."]
+position = Vector2(954, 472)
+scale = Vector2(3, 3)
+texture = ExtResource("2_nonx8")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

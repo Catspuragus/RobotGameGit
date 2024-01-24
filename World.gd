@@ -6,6 +6,7 @@ const Exit = preload("res://door.tscn")
 
 const Gun = preload("res://shotgun.tscn")
 const Pistol = preload("res://pistol.tscn")
+const Enemy = preload("res://enemy.tscn")
 
 var borders = Rect2(1,1,100,80)
 
@@ -81,6 +82,6 @@ func generate_level():
 				var new_step2 = new_step*32
 				if borders.has_point(new_step) && new_step2.distance_to(player.global_position) > 150:
 					if randf() <= .5:
-						var gun = Gun.instantiate()
-						add_child(gun)
-						gun.global_position = new_step2
+						var enemy = Enemy.instantiate()
+						add_child(enemy)
+						enemy.global_position = new_step2

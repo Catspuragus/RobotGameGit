@@ -21,16 +21,27 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	line.clear_points()
-	rot_laser = get_local_mouse_position().angle()
-	max_cast_to = Vector2(max_length,0).rotated(rot_laser)
 	
-	ray.target_position = max_cast_to
-	ray.force_raycast_update()
-	var raycastcoll = ray.get_collision_point()
-	var raycastcoll_id = ray.get_collider()
-	
-	
+
 	if firing == 1:
+		rot_laser = get_local_mouse_position().angle()
+		max_cast_to = Vector2(max_length,0).rotated(rot_laser)
+	
+		ray.target_position = max_cast_to
+		ray.force_raycast_update()
+		var raycastcoll = ray.get_collision_point()
+		var coll_id = ray.get_collider()
+		var coll_obj = coll_id
+		
+		if coll_id.get_parent().is_in_group("kill"):
+			coll_obj = coll_id.get_parent()
+		
 		line.add_point(global_position)
 		if ray.is_colliding():
+			print("ayup")
 			line.add_point(raycastcoll)
+			if coll_obj.is_in_group("kill"):
+				coll_obj.hp -= 30 * delta
+				if coll_obj.hp <= 0:
+					coll_obj.queue_free()
+				print(coll_obj.hp)
