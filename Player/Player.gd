@@ -32,9 +32,9 @@ func move_state():
 	if input_direction != Vector2.ZERO:
 		roll_vector = input_direction
 		
-		animationTree.set("parameters/Idle/blend_position",input_direction)
-		animationTree.set("parameters/Run/blend_position",input_direction)
-		animationTree.set("parameters/Dodge/blend_position",input_direction)
+		if Input.is_action_pressed("ordA") || Input.is_action_pressed("ordD"):
+			animationTree.set("parameters/Idle/blend_position",input_direction)
+			animationTree.set("parameters/Run/blend_position",input_direction)
 		animationState.travel("Run")
 		
 		velocity += input_direction * acceleration
@@ -52,9 +52,6 @@ func move_state():
 			
 	if Input.is_action_just_pressed("ordP"):
 		drop_weapon()
-	
-	if Input.is_action_just_pressed("vk_Space"):
-		state = ROLL
 
 func attack_state():
 	state = MOVE
@@ -86,15 +83,6 @@ func pickup_weapon():
 		can_pick_up = false
 		weapon_can_be_picked = 0
 
-func roll_state():
-	animationState.travel("Dodge")
-	if $RollTime.time_left >= .2:
-		velocity = roll_vector * roll_speed
-	else:
-		velocity = roll_vector * 75
-	move_and_slide()
-	if $RollTime.is_stopped() == true:
-		$RollTime.start(.6)
 
 func _physics_process(_delta):
 	if Input.is_action_pressed("L_Click"):
@@ -107,12 +95,12 @@ func _physics_process(_delta):
 		MOVE:
 			move_state()
 		ROLL:
-			roll_state()
+			pass
 		ATTACK:
 			attack_state()
 
 func do_animation(_delta):
-	$AnimationTree.advance(_delta*.7)
+	$AnimationTree.advance(_delta*.8)
 
 func _on_roll_time_timeout():
 	state = MOVE

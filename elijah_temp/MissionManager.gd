@@ -32,19 +32,28 @@ var missionDic = [
 		"Name": "Find My Friend",
 		"Instructions": "Guide the lost friend to town safely.",
 		"Target": "Billy Joe",
-		"Objective": 1
+		"Objective": 1,
+		"Dialogue": [
+			"AHHHHHHHHHHHHHHH" 
+		]
 	},
 	{
 		"Name" :"Starving Kid",
 		"Instructions": "Bring back berried from the forest.",
 		"Target": "Berries",
-		"Objective": 4
+		"Objective": 4,
+		"Dialogue": [
+			"bottom text" 
+		]
 	},
 	{
 		"Name": "Happy Birthday?",
 		"Instructions": "Deliver cupcakes to the party guests.",
 		"Target": "Children",
-		"Objective": 7
+		"Objective": 7,
+		"Dialogue": [
+			"fuck" 
+		]
 	}
 ]
 

@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var hp := 5.0
 
-var speed = 50
+var speed = 65
 @onready var nav_agent: NavigationAgent2D = $Navigation/NavigationAgent2D
 
 @onready var target_node = null
@@ -21,7 +21,7 @@ var rot_laser = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	home_pos = self.global_position
+	home_pos = self.global_position
 	nav_agent.path_desired_distance = 4
 	nav_agent.target_desired_distance = 4
 

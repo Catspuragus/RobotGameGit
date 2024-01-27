@@ -8,6 +8,11 @@ const CRR: float = 0.05  # char read rate
 
 @onready var tween: Tween = create_tween()
 
+@onready var level = Global.Level
+
+@onready var textLoader = Mission.new(level)
+@onready var missionText = textLoader.getMissionText()
+
 enum State {
 	READY,
 	READING,
@@ -19,8 +24,7 @@ var textQueue = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hideTB()
-	queueText("This text should be the third in queue")
-	queueText("The quick brown fox jumped over the lazy dog.")
+	queueText(missionText)
 	for text in textQueue:
 		print(text)
 

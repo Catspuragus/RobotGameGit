@@ -21,7 +21,9 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("vk_backslash"):
+		if(Global.Level < 5 - 1): #i put -1 cause it starts off at 0 and i dont want to do math (4)
+			Global.Level += 1
 		reload_level()
 
 func reload_level():

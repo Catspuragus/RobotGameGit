@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b8ia15hh7fo1r"]
+[gd_scene load_steps=19 format=3 uid="uid://b8ia15hh7fo1r"]
 
 [ext_resource type="Script" path="res://World/Levels/World.gd" id="1_dwhh6"]
 [ext_resource type="PackedScene" uid="uid://cwmg7k8womatn" path="res://World/Objects/bush.tscn" id="2_74qx3"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c0i2483nv4uuo" path="res://World/Tilesets/tiles.png" id="3_tax27"]
 [ext_resource type="Texture2D" uid="uid://d1tvqowvwvxte" path="res://World/Tilesets/purplegrass.png" id="5_llt68"]
 [ext_resource type="Script" path="res://World/CanvasModulate.gd" id="7_5t3d7"]
+[ext_resource type="PackedScene" uid="uid://bqe803d46krgl" path="res://elijah_temp/node_2d.tscn" id="8_bmji7"]
+[ext_resource type="Script" path="res://World/WorldEnvironment.gd" id="8_ss4us"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qnru8"]
 texture = ExtResource("3_tax27")
@@ -877,19 +879,13 @@ texture_region_size = Vector2i(32, 32)
 8:4/0/terrains_peering_bit/top_side = 0
 8:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_pcs10")
 
-[sub_resource type="TileSet" id="TileSet_ocnyb"]
+[sub_resource type="TileSet" id="TileSet_rcsbh"]
 tile_size = Vector2i(32, 32)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.631373, 0.188235, 0.419608, 1)
 navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_rfjh0")
-
-[sub_resource type="TileSet" id="TileSet_y06bn"]
-tile_size = Vector2i(32, 32)
-terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Terrain 0"
-terrain_set_0/terrain_0/color = Color(0.631373, 0.188235, 0.419608, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fsdhw"]
 texture = ExtResource("3_kwce4")
@@ -1238,7 +1234,6 @@ polygon = PackedVector2Array(-9.09091, 6.81818, -4.54545, 10.6061, 6.06061, 10.6
 [sub_resource type="Environment" id="Environment_k3bn3"]
 background_mode = 3
 adjustment_enabled = true
-adjustment_saturation = 0.9
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
@@ -1252,12 +1247,12 @@ layer_0/tile_data = PackedInt32Array(1441821, 65537, 1, 1376285, 65537, 1, 13107
 
 [node name="Navigation_Path" type="TileMap" parent="."]
 z_index = -1000
-tile_set = SubResource("TileSet_ocnyb")
+tile_set = SubResource("TileSet_rcsbh")
 format = 2
 
 [node name="Rock_Path" type="TileMap" parent="."]
 z_index = -10
-tile_set = SubResource("TileSet_y06bn")
+tile_set = SubResource("TileSet_rcsbh")
 format = 2
 
 [node name="Dirt Path" type="TileMap" parent="."]
@@ -1290,3 +1285,7 @@ script = ExtResource("7_5t3d7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k3bn3")
+script = ExtResource("8_ss4us")
+
+[node name="Text" parent="." instance=ExtResource("8_bmji7")]
+position = Vector2(-450, -415)
