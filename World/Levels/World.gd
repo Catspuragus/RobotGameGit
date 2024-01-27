@@ -98,6 +98,7 @@ func generate_level():
 							add_child(enemy)
 							enemy.home_pos = new_step2 + Vector2(16,16)
 							enemy.global_position = new_step2 + Vector2(16,16)
+							enemy_spawnz += 1
 							
 						elif randf() <= .05 && bunny_spawnz < max_enemyz:
 							var bunny = Bunny.instantiate()
