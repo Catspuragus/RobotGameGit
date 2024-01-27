@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://df4hcvktd4sid"]
+
+[ext_resource type="Script" path="res://Weapons/laser.gd" id="1_simcd"]
+
+[node name="Laser" type="Node2D"]
+script = ExtResource("1_simcd")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+modulate = Color(100, 100, 100, 1)
+self_modulate = Color(100, 100, 100, 1)
+target_position = Vector2(2000, 0)
+collision_mask = 9
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="Line2D" type="Line2D" parent="."]
+z_index = -1
+points = PackedVector2Array(0, 0, 0, 0)
+width = 2.0
