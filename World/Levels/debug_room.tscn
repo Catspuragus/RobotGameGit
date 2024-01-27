@@ -1,25 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://laq1vbhhgfuq"]
+[gd_scene load_steps=8 format=3 uid="uid://laq1vbhhgfuq"]
 
 [ext_resource type="PackedScene" uid="uid://d3ove05sdglrd" path="res://Player/gronk.tscn" id="1_6jef8"]
 [ext_resource type="PackedScene" uid="uid://c2qy1tvkaexvn" path="res://Enemies/enemy.tscn" id="2_6n6e8"]
 [ext_resource type="PackedScene" uid="uid://7fg70uy5mm2e" path="res://Player/camera_2d.tscn" id="2_dpi8b"]
 [ext_resource type="Texture2D" uid="uid://d1tvqowvwvxte" path="res://World/Tilesets/purplegrass.png" id="4_cvvek"]
+[ext_resource type="PackedScene" uid="uid://cbexgfi0ncvji" path="res://World/Objects/door.tscn" id="5_v4f4o"]
+[ext_resource type="PackedScene" uid="uid://br4qnop5fhuqa" path="res://Enemies/cutebunny.tscn" id="6_3wnxm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2i2yk"]
-vertices = PackedVector2Array(-184, -165, 280, -168, 290, 99, -186, 88)
+vertices = PackedVector2Array(-284, -306, 427, -268, 416, 241, -323, 237)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-184, -165, 280, -168, 290, 99, -186, 88)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-284, -306, 427, -268, 416, 241, -323, 237)])
 
 [node name="debug_room" type="Node2D"]
 
-[node name="Gronk" parent="." instance=ExtResource("1_6jef8")]
-position = Vector2(0, -42)
-
-[node name="Camera2D" parent="Gronk" instance=ExtResource("2_dpi8b")]
-position = Vector2(0, -4)
-
-[node name="Enemy" parent="." instance=ExtResource("2_6n6e8")]
-position = Vector2(153, 8)
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_2i2yk")
 
 [node name="Background" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 0.956863, 1)
@@ -31,5 +27,17 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 80, 3552, 3144)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_2i2yk")
+[node name="Gronk" parent="." instance=ExtResource("1_6jef8")]
+position = Vector2(0, -42)
+
+[node name="Camera2D" parent="Gronk" instance=ExtResource("2_dpi8b")]
+position = Vector2(0, -4)
+
+[node name="Enemy" parent="." instance=ExtResource("2_6n6e8")]
+position = Vector2(364, 182)
+
+[node name="Area2D" parent="." instance=ExtResource("5_v4f4o")]
+position = Vector2(-272, -298)
+
+[node name="Bunny2" parent="." instance=ExtResource("6_3wnxm")]
+position = Vector2(3, 186)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdho65246fnu8"
-path="res://.godot/imported/roboRunRight.png-e941f32c0c2b75e882f13e00912f6cdd.ctex"
+uid="uid://xriroveryoj2"
+path="res://.godot/imported/rabbot.png-09af327c8bdd0bc61dbaea5967bb8ee5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/roboRunRight.png"
-dest_files=["res://.godot/imported/roboRunRight.png-e941f32c0c2b75e882f13e00912f6cdd.ctex"]
+source_file="res://Enemies/rabbot.png"
+dest_files=["res://.godot/imported/rabbot.png-09af327c8bdd0bc61dbaea5967bb8ee5.ctex"]
 
 [params]
 

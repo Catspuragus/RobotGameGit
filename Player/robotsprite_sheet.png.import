@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsevqjbdqevye"
-path="res://.godot/imported/roboRunRight1.png-1139f86861af83112c80c2a6c0deef19.ctex"
+uid="uid://cbxd5qboupysk"
+path="res://.godot/imported/robotsprite_sheet.png-5d53ba449bc04e75fd2a09026190c0e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/roboRunRight1.png"
-dest_files=["res://.godot/imported/roboRunRight1.png-1139f86861af83112c80c2a6c0deef19.ctex"]
+source_file="res://Player/robotsprite_sheet.png"
+dest_files=["res://.godot/imported/robotsprite_sheet.png-5d53ba449bc04e75fd2a09026190c0e3.ctex"]
 
 [params]
 

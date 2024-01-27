@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2qy1tvkaexvn"]
+[gd_scene load_steps=9 format=3 uid="uid://br4qnop5fhuqa"]
 
-[ext_resource type="Script" path="res://Enemies/enemy.gd" id="1_7ywgq"]
-[ext_resource type="Texture2D" uid="uid://xriroveryoj2" path="res://Enemies/rabbot.png" id="2_n80tc"]
+[ext_resource type="Script" path="res://Enemies/cutebunny.gd" id="1_8v20i"]
+[ext_resource type="Texture2D" uid="uid://xriroveryoj2" path="res://Enemies/rabbot.png" id="2_es4g5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1yc7"]
 radius = 8.0
@@ -10,9 +10,6 @@ height = 22.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a86kt"]
 radius = 3.0
 height = 12.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_njycr"]
-radius = 135.004
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4xfwf"]
 radius = 98.0
@@ -55,13 +52,13 @@ _data = {
 "RESET": SubResource("Animation_ar0ag")
 }
 
-[node name="Enemy" type="CharacterBody2D" groups=["kill"]]
+[node name="Bunny" type="CharacterBody2D" groups=["kill"]]
 collision_layer = 8
 collision_mask = 15
-script = ExtResource("1_7ywgq")
+script = ExtResource("1_8v20i")
 
 [node name="Hurtbox" type="Area2D" parent="." groups=["kill"]]
-position = Vector2(0, -1)
+position = Vector2(0, -4)
 rotation = 1.5708
 collision_layer = 8
 collision_mask = 8
@@ -69,7 +66,7 @@ input_pickable = false
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" groups=["kill"]]
-position = Vector2(-5, 2.38419e-07)
+position = Vector2(-4, 1.4782e-05)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_g1yc7")
 
@@ -80,15 +77,6 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_a86kt")
 
 [node name="Node2D" type="Node2D" parent="."]
-
-[node name="DeAggro" type="Area2D" parent="Node2D"]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/DeAggro" groups=["kill"]]
-shape = SubResource("CircleShape2D_njycr")
-debug_color = Color(0.509804, 0.576471, 0, 0.419608)
 
 [node name="AggroRange" type="Area2D" parent="Node2D"]
 collision_layer = 0
@@ -109,13 +97,9 @@ avoidance_enabled = true
 wait_time = 0.1
 autostart = true
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-collision_mask = 3
-collide_with_areas = true
-
 [node name="Rabbot" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("2_n80tc")
+texture = ExtResource("2_es4g5")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -124,7 +108,7 @@ libraries = {
 "": SubResource("AnimationLibrary_jqij7")
 }
 
-[connection signal="area_exited" from="Node2D/DeAggro" to="." method="_on_de_aggro_area_exited"]
 [connection signal="area_entered" from="Node2D/AggroRange" to="." method="_on_aggro_range_area_entered"]
+[connection signal="area_exited" from="Node2D/AggroRange" to="." method="_on_aggro_range_area_exited"]
 [connection signal="velocity_computed" from="Navigation/NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="timeout" from="Navigation/Recalculate" to="." method="_on_recalculate_timeout"]
