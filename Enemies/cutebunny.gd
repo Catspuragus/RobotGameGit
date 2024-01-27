@@ -13,8 +13,8 @@ var fed := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	nav_agent.path_desired_distance = 30
-	nav_agent.target_desired_distance = 30
+	nav_agent.path_desired_distance = 4
+	nav_agent.target_desired_distance = 4
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,13 +28,21 @@ func _physics_process(_delta):
 			chase = 1
 	
 	
-	
 	var direction = (nav_agent.get_next_path_position() - global_position).normalized()
 	var intended_velocity = direction * speed
+	
+	
+	if velocity.distance_to(Vector2(0,0)) > 5:
+		var dir = rad_to_deg(velocity.angle())
+		if dir > -90 and dir < 90:
+			$AnimationPlayer.play("Right")
+		else:
+			$AnimationPlayer.play("Left")
+	
 	nav_agent.set_velocity(intended_velocity)
 
 func recalc_path():
-	if chase == 1:
+	if chase == 1 && global_position.distance_to(target_position) > 75:
 		nav_agent.target_position = target_position
 	elif chase == 0:
 		nav_agent.target_position = global_position

@@ -1,6 +1,6 @@
 extends CanvasModulate
 
-const NIGHT_COLOR = Color("641d18")
+const NIGHT_COLOR = Color("d5e800")
 const DAY_COLOR = Color("ffffff")
 
 var time = 0

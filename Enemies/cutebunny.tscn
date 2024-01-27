@@ -3,16 +3,12 @@
 [ext_resource type="Script" path="res://Enemies/cutebunny.gd" id="1_8v20i"]
 [ext_resource type="Texture2D" uid="uid://xriroveryoj2" path="res://Enemies/rabbot.png" id="2_es4g5"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1yc7"]
-radius = 8.0
-height = 22.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a86kt"]
 radius = 3.0
 height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4xfwf"]
-radius = 98.0
+radius = 83.0
 
 [sub_resource type="Animation" id="Animation_11dua"]
 resource_name = "Left"
@@ -46,31 +42,35 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_i3rn7"]
+resource_name = "Right"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Rabbot:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jqij7"]
 _data = {
 "Left": SubResource("Animation_11dua"),
-"RESET": SubResource("Animation_ar0ag")
+"RESET": SubResource("Animation_ar0ag"),
+"Right": SubResource("Animation_i3rn7")
 }
 
-[node name="Bunny" type="CharacterBody2D" groups=["kill"]]
-collision_layer = 8
-collision_mask = 15
+[node name="Bunny" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_8v20i")
 
-[node name="Hurtbox" type="Area2D" parent="." groups=["kill"]]
-position = Vector2(0, -4)
-rotation = 1.5708
-collision_layer = 8
-collision_mask = 8
-input_pickable = false
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" groups=["kill"]]
-position = Vector2(-4, 1.4782e-05)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_g1yc7")
-
-[node name="Hitbox" type="CollisionShape2D" parent="." groups=["kill"]]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, 1)
 rotation = 1.5708
@@ -83,7 +83,7 @@ collision_layer = 0
 collision_mask = 2
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/AggroRange" groups=["kill"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/AggroRange"]
 shape = SubResource("CircleShape2D_4xfwf")
 debug_color = Color(0.984314, 0, 0.360784, 0.419608)
 
@@ -94,13 +94,13 @@ path_postprocessing = 1
 avoidance_enabled = true
 
 [node name="Recalculate" type="Timer" parent="Navigation"]
-wait_time = 0.1
+wait_time = 0.3
 autostart = true
 
 [node name="Rabbot" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2_es4g5")
-hframes = 4
+hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 speed_scale = 0.7

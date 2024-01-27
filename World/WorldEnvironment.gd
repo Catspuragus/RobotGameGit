@@ -5,16 +5,16 @@ extends WorldEnvironment
 func _ready():
 	match Global.Level:
 		0:
-			World.set_adjustment_saturation(0)
+			World.set_adjustment_saturation(.3)
 			World.set_adjustment_contrast(1.3)
 		1:
-			World.set_adjustment_saturation(.4)
+			World.set_adjustment_saturation(.5)
 			World.set_adjustment_contrast(1)
 		2:
-			World.set_adjustment_saturation(.6)
+			World.set_adjustment_saturation(.7)
 			World.set_adjustment_contrast(1)
 		3:
-			World.set_adjustment_saturation(.7)
+			World.set_adjustment_saturation(.9)
 			World.set_adjustment_contrast(1)
 		4:
 			World.set_adjustment_saturation(1)

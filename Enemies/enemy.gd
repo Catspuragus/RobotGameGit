@@ -44,10 +44,18 @@ func _physics_process(_delta):
 			chase = 1
 	
 	
-	
-	var direction = (nav_agent.get_next_path_position() - global_position).normalized()
-	var intended_velocity = direction * speed
-	nav_agent.set_velocity(intended_velocity)
+	if(chase == 1):
+		var direction = (nav_agent.get_next_path_position() - global_position).normalized()
+		
+		if velocity.distance_to(Vector2(0,0)) > 5:
+			var dir = rad_to_deg(velocity.angle())
+			if dir > -90 and dir < 90:
+				$AnimationPlayer.play("Right")
+			else:
+				$AnimationPlayer.play("Left")
+			
+		var intended_velocity = direction * speed
+		nav_agent.set_velocity(intended_velocity)
 
 func recalc_path():
 	if target_node:
@@ -68,7 +76,6 @@ func _on_recalculate_timeout():
 func _on_aggro_range_area_entered(area):
 	aggro = 1
 	target_node = area.owner
-	print("hi")
 #
 func _on_de_aggro_area_exited(area):
 	aggro = 0

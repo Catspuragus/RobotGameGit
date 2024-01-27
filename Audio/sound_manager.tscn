@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvkyc24iwl5bn"]
+
+[ext_resource type="Script" path="res://Audio/sound_manager.gd" id="1_fjy3i"]
+[ext_resource type="AudioStream" uid="uid://bxvf6llojx6ha" path="res://Audio/level3.mp3" id="2_2qyai"]
+[ext_resource type="AudioStream" uid="uid://58g8ophuio0p" path="res://Audio/level2.mp3" id="3_vu3cu"]
+[ext_resource type="AudioStream" uid="uid://w06wvut2x3v1" path="res://Audio/level1.mp3" id="4_d68ye"]
+
+[node name="SoundManager" type="Node2D"]
+script = ExtResource("1_fjy3i")
+
+[node name="Level3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2qyai")
+
+[node name="Level2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vu3cu")
+
+[node name="Level1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d68ye")
+
+[connection signal="finished" from="Level3" to="." method="_on_level_3_finished"]
+[connection signal="finished" from="Level2" to="." method="_on_level_2_finished"]
+[connection signal="finished" from="Level1" to="." method="_on_level_1_finished"]

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://World/Levels/World.gd" id="1_dwhh6"]
 [ext_resource type="PackedScene" uid="uid://cwmg7k8womatn" path="res://World/Objects/bush.tscn" id="2_74qx3"]
+[ext_resource type="PackedScene" uid="uid://cvkyc24iwl5bn" path="res://Audio/sound_manager.tscn" id="2_wr56j"]
 [ext_resource type="Texture2D" uid="uid://kd2rlignh6kc" path="res://World/Tilesets/rockpath.png" id="3_d5kbo"]
 [ext_resource type="Texture2D" uid="uid://54il1j0abkka" path="res://World/Tilesets/DirtTileset.png" id="3_kwce4"]
 [ext_resource type="Texture2D" uid="uid://c0i2483nv4uuo" path="res://World/Tilesets/tiles.png" id="3_tax27"]
 [ext_resource type="Texture2D" uid="uid://d1tvqowvwvxte" path="res://World/Tilesets/purplegrass.png" id="5_llt68"]
-[ext_resource type="Script" path="res://World/CanvasModulate.gd" id="7_5t3d7"]
 [ext_resource type="PackedScene" uid="uid://bqe803d46krgl" path="res://elijah_temp/node_2d.tscn" id="8_bmji7"]
 [ext_resource type="Script" path="res://World/WorldEnvironment.gd" id="8_ss4us"]
 
@@ -1239,6 +1239,8 @@ adjustment_enabled = true
 y_sort_enabled = true
 script = ExtResource("1_dwhh6")
 
+[node name="SoundManager" parent="." instance=ExtResource("2_wr56j")]
+
 [node name="Mangrove" type="TileMap" parent="."]
 z_index = -10
 tile_set = SubResource("TileSet_xt6fp")
@@ -1278,10 +1280,6 @@ show_behind_parent = true
 position = Vector2(0, -8)
 scale = Vector2(1.32, 1.32)
 occluder = SubResource("OccluderPolygon2D_qu5sk")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-script = ExtResource("7_5t3d7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_k3bn3")
