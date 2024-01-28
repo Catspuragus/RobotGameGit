@@ -92,28 +92,25 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if currMission.getMissionComplete():
-		print("Entering sleep move") # queue in textbox
+		print("Entering sleep mode") # queue in textbox
 		self.incrimentMissions()
 
 func incrimentMissions():
 	self.completedMissions+=1
-	if self.completedMissions < self.missions.size():
+	if !self.getLevelComplete():
 		print(self.missions.size())
 		print(self.completedMissions)
 		self.currMission = Mission.new(missions[completedMissions])
 		sendText()
-	else:
-		self.levelComplete = true
 
 func startText():
 	#tb.queueText("This came from the level")
 	pass
 
 func sendText(this = newTB):
-	print(currMission.getDialogue())
 	for str in currMission.getDialogue():
 		this.queueText(str)
 	
 	
 func getLevelComplete():
-	return self.levelComplete
+	return !(self.completedMissions < self.missions.size())

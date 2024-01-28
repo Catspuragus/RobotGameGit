@@ -135,11 +135,10 @@ func generate_level():
 	spawnObjectives()
 
 func forceMission():
-	print("NEW MISSION")
-	if !currLevel.getLevelComplete():
-		currLevel.incrimentMissions()
-	else:
+	if currLevel.getLevelComplete():
 		incriment_level()
+	else:
+		currLevel.incrimentMissions()
 	
 func spawnObjectives():
 	var spawnedObjectives = 0

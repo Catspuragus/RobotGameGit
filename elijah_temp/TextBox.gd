@@ -82,8 +82,11 @@ func changeState(newState):
 	currState = newState
 	match currState:
 		State.READY:
-			print("Textbox is READY")
+			#print("Textbox is READY")
+			pass
 		State.READING:
-			print("Textbox is READING")
+			#print("Textbox is READING")
+			pass
 		State.FINISHED:
-			print("Textbox is FINISHED")
+			#print("Textbox is FINISHED")
+			pass
