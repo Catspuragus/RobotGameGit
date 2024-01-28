@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://hrsums3atd8p"]
+
+[ext_resource type="Script" path="res://UI/options.gd" id="1_rc3be"]
+[ext_resource type="Texture2D" uid="uid://cd3d3hos1etp6" path="res://UI/green1.png" id="2_b7jqe"]
+[ext_resource type="AudioStream" uid="uid://61k6npjkh5w8" path="res://Audio/more_menu.mp3" id="3_nvxvp"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rc3be")
+
+[node name="Green1" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(640.75, 359.75)
+scale = Vector2(6.70725, 6.75688)
+texture = ExtResource("2_b7jqe")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -185.0
+offset_right = 347.0
+offset_bottom = -2.0
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Quit"
+
+[node name="VSlider" type="VSlider" parent="."]
+layout_mode = 0
+offset_left = 1065.0
+offset_top = 406.0
+offset_right = 1173.0
+offset_bottom = 702.0
+max_value = 1.0
+step = 0.01
+value = 1.0
+scrollable = false
+
+[node name="Main_Menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_nvxvp")
+autoplay = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 1051.0
+offset_top = 325.0
+offset_right = 1186.0
+offset_bottom = 391.0
+theme_override_colors/background_color = Color(0, 0, 0, 0.521569)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Volume"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed" flags=18]
+[connection signal="value_changed" from="VSlider" to="." method="_on_v_slider_value_changed"]

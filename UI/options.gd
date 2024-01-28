@@ -2,6 +2,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$VSlider.set_value_no_signal(Global.Volume)
 	$VBoxContainer/StartButton.grab_focus()
 
 
@@ -11,12 +12,13 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://World/Levels/World.tscn")
+	get_tree().change_scene_to_file("res://UI/Menu.tscn")
 
 
 func _on_quit_button_pressed():
 	get_tree().quit()
 
 
-func _on_options_button_pressed():
-	get_tree().change_scene_to_file("res://UI/options.tscn")
+func _on_v_slider_value_changed(value):
+	Global.Volume = value
+	AudioServer.set_bus_volume_db(0,linear_to_db(value))
