@@ -12,6 +12,11 @@ const Spikes = preload("res://Enemies/spikes.tscn")
 
 var borders = Rect2(1,1,100,80)
 
+var currLevel
+var temp_rooms = []
+
+var exitPP: Vector2
+
 @onready var tileMap = $Mangrove
 @onready var tileMap2 = $"Dirt Path"
 @onready var tileMap3 = $"Rock_Path"
@@ -24,17 +29,22 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("vk_backslash"):
-		if(Global.Level < 5 - 1): #i put -1 cause it starts off at 0 and i dont want to do math (4)
-			Global.Level += 1
+		incriment_level()
 		reload_level()
 
+func incriment_level():
+	if(Global.Level < 5 - 1): #i put -1 cause it starts off at 0 and i dont want to do math (4)
+		Global.Level += 1
+	
 func reload_level():
 	get_tree().reload_current_scene()
 
 func generate_level():
+	currLevel = Level.new(1)
+	add_child(currLevel)
 	randomize()
-	var walker = Walker.new(Vector2(50,30), borders)
-	var map = walker.walk(55)
+	var walker = Walker.new(Vector2(50,30), borders) # starting posistion, room size
+	var map = walker.walk(55) # total steps (level size basically)?
 	
 	var player = Player.instantiate()
 	add_child(player)
@@ -45,15 +55,17 @@ func generate_level():
 	var camera = Camera.instantiate()
 	player.add_child(camera)
 	
+	currLevel.setPlayer(player) # give player to level
+	
 	var exit = Exit.instantiate()
 	add_child(exit)
 	
 	var end_room = walker.get_end_room()
 	exit.position = end_room.position*32
 #	exit.connect("leaving_level", self, "reload_level")
-
+	temp_rooms = (walker.random_room(end_room))
 	
-	
+	exitPP = end_room.position*32
 #	var gun2 = Pistol.instantiate()
 #	add_child(gun2)
 #	gun2.global_position = walker.path_history[1]*32
@@ -79,41 +91,78 @@ func generate_level():
 #	tileMap.update_bitmask_region(borders.position,borders.end)
 	
 #	*** SPAWNING THINGS ***
-	var bunny_spawnz = 0
-	var max_bunz = 5
+#	var bunny_spawnz = 0
+#	var max_bunz = 5
+#
+#	var enemy_spawnz = 0
+#	var max_enemyz = 5
+#
+#	var spike_spawnz = 0
+#	var max_spikez = 5
+#
+
+#
+#	while bunny_spawnz < max_bunz && enemy_spawnz < max_enemyz && spike_spawnz < max_spikez:
+#		for room in temp_rooms:
+#			var top_left_corner = (room.position - room.size/2).ceil()
+#			for y in room.size.y:
+#				for x in room.size.x:
+#					var new_step = top_left_corner + Vector2(x,y)
+#					var new_step2 = new_step*32
+#					if borders.has_point(new_step) && new_step2.distance_to(player.global_position) > 150:
+#						if randf() <= .05 && enemy_spawnz < max_enemyz:
+#							var enemy = Enemy.instantiate()
+#							add_child(enemy)
+#							enemy.home_pos = new_step2 + Vector2(16,16)
+#							enemy.global_position = new_step2 + Vector2(16,16)
+#							enemy_spawnz += 1
+#
+#						elif randf() <= .05 && bunny_spawnz < max_enemyz:
+#							var bunny = Bunny.instantiate()
+#							add_child(bunny)
+#							bunny.global_position = new_step2 + Vector2(16,16)
+#							bunny.target_position = exit.global_position + Vector2(randi_range(55,-55), randi_range(55,-55))
+#							bunny_spawnz += 1
+#
+#						elif randf() <= .05 && spike_spawnz < max_spikez:
+#							var spikes = Spikes.instantiate()
+#							add_child(spikes)
+#							spikes.global_position = new_step2 + Vector2(16,16)
+#							spike_spawnz += 1
+	spawnObjectives()
 	
-	var enemy_spawnz = 0
-	var max_enemyz = 5
-	
-	var spike_spawnz = 0
-	var max_spikez = 5
-	
-	var temp_rooms = walker.random_room(end_room)
-	
-	while bunny_spawnz < max_bunz && enemy_spawnz < max_enemyz && spike_spawnz < max_spikez:
+func spawnObjectives():
+	var spawnedObjectives = 0
+	var maxSpawns = currLevel.getObjectiveGoal()
+	var objectiveType = currLevel.getObjective()
+	#var objName = objectiveType[0]
+	#var objObject = objectiveType[1]
+	var pp = currLevel.getPlayer()
+	while spawnedObjectives < maxSpawns:
 		for room in temp_rooms:
+			#print(room)
 			var top_left_corner = (room.position - room.size/2).ceil()
 			for y in room.size.y:
 				for x in room.size.x:
 					var new_step = top_left_corner + Vector2(x,y)
 					var new_step2 = new_step*32
-					if borders.has_point(new_step) && new_step2.distance_to(player.global_position) > 150:
-						if randf() <= .05 && enemy_spawnz < max_enemyz:
-							var enemy = Enemy.instantiate()
-							add_child(enemy)
-							enemy.home_pos = new_step2 + Vector2(16,16)
-							enemy.global_position = new_step2 + Vector2(16,16)
-							enemy_spawnz += 1
-							
-						elif randf() <= .05 && bunny_spawnz < max_enemyz:
-							var bunny = Bunny.instantiate()
-							add_child(bunny)
-							bunny.global_position = new_step2 + Vector2(16,16)
-							bunny.target_position = exit.global_position + Vector2(randi_range(55,-55), randi_range(55,-55))
-							bunny_spawnz += 1
-							
-						elif randf() <= .05 && bunny_spawnz < max_enemyz:
-							var spikes = Spikes.instantiate()
-							add_child(spikes)
-							spikes.global_position = new_step2 + Vector2(16,16)
-							spike_spawnz += 1
+					if borders.has_point(new_step) && new_step2.distance_to(pp.global_position) > 150:
+						if randf() <= .05:
+							var obj = objectiveType[1].instantiate() # object preload from level class
+							add_child(obj)
+							spawnedObjectives+=1
+							match objectiveType[0]: # object name from level class
+								"Tree":
+									obj.home_pos = new_step2 + Vector2(16,16)
+									obj.global_position = new_step2 + Vector2(16,16)
+									#spawnedObjectives += 1
+								
+								"Bunny":
+									obj.global_position = new_step2 + Vector2(16,16)
+									obj.target_position = exitPP + Vector2(randi_range(55,-55), randi_range(55,-55))
+									#spawnedObjectives += 1
+									
+								"Spikes":
+									obj.global_position = new_step2 + Vector2(16,16)
+									#spawnedObjectives += 1
+								

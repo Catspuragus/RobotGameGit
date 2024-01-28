@@ -25,30 +25,32 @@ var textQueue = []
 func _ready():
 	hideTB()
 	#queueText(missionText)
-	textLoader.sendText(self)
+	#textLoader.sendText()
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-		match currState:
-			State.READY:
-				if !textQueue.is_empty():
-					displayText()
-					changeState(State.READING)
-					
-			State.READING:
-				if Input.is_action_just_pressed("ui_accept"):
-					label.visible_ratio = 1.0
-					tween.kill()
-					endSymb.text = "v"
-					changeState(State.FINISHED)
-					
-			State.FINISHED:
-				if Input.is_action_just_pressed("ui_accept"):
-					print("Input accepted")
-					changeState(State.READY)
-					hideTB()
+	match currState:
+		State.READY:
+			if !textQueue.is_empty():
+				displayText()
+				changeState(State.READING)
+				
+		State.READING:
+			if Input.is_action_just_pressed("ui_accept"):
+				label.visible_ratio = 1.0
+				tween.kill()
+				endSymb.text = "v"
+				changeState(State.FINISHED)
+				
+		State.FINISHED:
+			if Input.is_action_just_pressed("ui_accept"):
+				print("Input accepted")
+				changeState(State.READY)
+				hideTB()
 
 func queueText(newText):
+	#print(newText)
 	textQueue.push_back(newText)
 	
 func hideTB():

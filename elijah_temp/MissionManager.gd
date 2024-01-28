@@ -16,7 +16,7 @@ var missionDic = [
 		"Instructions": "Use LASER EYES to destroy the SPIKES scattered around the area.",
 		"Target": 
 			{
-				"Name": "Goons",
+				"Name": "Spikes",
 				"Object": preload("res://Enemies/enemy.tscn")
 			},
 		"Objective": 6,
@@ -192,6 +192,7 @@ func _init(missionNum: int):
 	targetObj = missionDic[missionNum]["Target"]
 	objectiveGoal = missionDic[missionNum]["Objective"]
 	listDialogue = missionDic[missionNum]["Dialogue"]
+
 	dialogueCount = 0
 	goalCount = 0
 	goalCompleted = false
@@ -202,11 +203,14 @@ func getMissionText():
 	
 # Returns mission completion based on objectives collected
 func getMissionComplete(count:int = self.goalCount) -> bool:
-	return !(count < self.objectiveCount)
+	return !(count < self.objectiveGoal)
 	
 # Returns target object
 func getTargetObject():
-	return self.targetObj["Object"]
+	return [self.targetObj["Name"], self.targetObj["Object"]]
+
+func getObjectiveGoal():
+	return self.objectiveGoal
 	
 func getDialogue(thisD: int = self.dialogueCount):
 	# verify if there is any more dialogue

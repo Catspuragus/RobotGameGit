@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj66tqiq387gb"]
+
+[ext_resource type="Script" path="res://elijah_temp/levelManager.gd" id="1_pyh75"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_pyh75")
