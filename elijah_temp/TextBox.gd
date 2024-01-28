@@ -10,8 +10,8 @@ const CRR: float = 0.05  # char read rate
 
 @onready var level = Global.Level
 
-@onready var textLoader = Mission.new(level)
-@onready var missionText = textLoader.getMissionText()
+@onready var textLoader = Level.new(1)
+#@onready var missionText = textLoader.getMissionText()
 
 enum State {
 	READY,
@@ -24,9 +24,8 @@ var textQueue = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	hideTB()
-	queueText(missionText)
-	for text in textQueue:
-		print(text)
+	#queueText(missionText)
+	textLoader.sendText(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -40,7 +39,6 @@ func _process(delta):
 				if Input.is_action_just_pressed("ui_accept"):
 					label.visible_ratio = 1.0
 					tween.kill()
-					tween = create_tween()
 					endSymb.text = "v"
 					changeState(State.FINISHED)
 					
