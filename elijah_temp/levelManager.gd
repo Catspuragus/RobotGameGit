@@ -96,9 +96,12 @@ func _process(delta):
 		self.incrimentMissions()
 
 func incrimentMissions():
+	self.completedMissions+=1
 	if self.completedMissions < self.missions.size():
-		self.completedMissions+=1
+		print(self.missions.size())
+		print(self.completedMissions)
 		self.currMission = Mission.new(missions[completedMissions])
+		sendText()
 	else:
 		self.levelComplete = true
 

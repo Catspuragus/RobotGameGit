@@ -30,11 +30,14 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("vk_backslash"):
 		incriment_level()
-		reload_level()
-
+		
+	if event.is_action_pressed("ordE"):
+		forceMission()
+				
 func incriment_level():
 	if(Global.Level < 5 - 1): #i put -1 cause it starts off at 0 and i dont want to do math (4)
 		Global.Level += 1
+		reload_level()
 	
 func reload_level():
 	get_tree().reload_current_scene()
@@ -130,6 +133,13 @@ func generate_level():
 #							spikes.global_position = new_step2 + Vector2(16,16)
 #							spike_spawnz += 1
 	spawnObjectives()
+
+func forceMission():
+	print("NEW MISSION")
+	if !currLevel.getLevelComplete():
+		currLevel.incrimentMissions()
+	else:
+		incriment_level()
 	
 func spawnObjectives():
 	var spawnedObjectives = 0
