@@ -51,7 +51,7 @@ func _physics_process(_delta):
 	if global_position.distance_to(target_position) <= 75 && !finished:
 		finished = true
 		var world = get_tree().get_root().get_child(1)
-		world.objectivesMet += 1
+		world.incrGoalCount()
 
 func recalc_path():
 	if chase == 1 && global_position.distance_to(target_position) > 75:

@@ -45,7 +45,7 @@ func _process(delta):
 				
 		State.FINISHED:
 			if Input.is_action_just_pressed("ui_accept"):
-				print("Input accepted")
+				#print("Input accepted")
 				changeState(State.READY)
 				hideTB()
 
@@ -60,12 +60,12 @@ func hideTB():
 	tbContainer.hide()
 	
 func showTB():
-	print("Show TB")
+	#print("Show TB")
 	startSymb.text = "*"
 	tbContainer.show()
 	
 func displayText():
-	print("Display Text")
+	#print("Display Text")
 	var newText = textQueue.pop_front()
 	label.text = newText
 	label.visible_ratio = 0.0

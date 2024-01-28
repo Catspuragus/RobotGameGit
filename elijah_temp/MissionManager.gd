@@ -12,7 +12,7 @@ var goalCompleted: bool = false
 
 var missionDic = [
 	{
-		"Name": "DANGER: SPIKES!!1",
+		"Name": "SPIKES!!1",
 		"Instructions": "Use LASER EYES to destroy the SPIKES scattered around the area.",
 		"Target": 
 			{
@@ -21,7 +21,7 @@ var missionDic = [
 			},
 		"Objective": 6,
 		"Dialogue": [
-			"LEA:\tDANGER: DETECTED. Hazards present in area. Must destroy.",
+			"LEA --'DANGER: DETECTED. Hazards present in area. Must destroy.",
 			"Mission: COMPLETE\n...........
 			Seeking new mission......"
 		]
@@ -31,12 +31,12 @@ var missionDic = [
 		"Instructions": "Use LASER EYES to destroy guard towers.",
 		"Target": 
 			{
-				"Name": "Spikes", # ****************** CHANGE ************************
+				"Name": "Towers", # ****************** CHANGE ************************
 				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 3,
 		"Dialogue": [
-			"LEA:\tDANGER: DETECTED.... Guard towers identified. Destruction initiated.",
+			"LEA --'DANGER: DETECTED.... Guard towers identified. Destruction initiated.",
 			"Mission: COMPLETE
 			.........
 			[Invalid Querie]..........
@@ -54,7 +54,7 @@ var missionDic = [
 			},
 		"Objective": 4,
 		"Dialogue": [
-			"LEA:\tDANGER: DETECTED. Rab-bots must be destroyed",
+			"LEA --'DANGER: DETECTED. Rab-bots must be destroyed",
 			"Mission: ...?...
 			[Invalid Querie]....Unregistered Input......?
 			[SYNTAX ERROR] >> [REBOOT]
@@ -73,7 +73,7 @@ var missionDic = [
 		"Objective": 7,
 		"Dialogue": 
 		[
-			"LEA:\tDANGER: ..uncertain.....Destruction... unnecessary?
+			"LEA --'DANGER: ..uncertain.....Destruction... unnecessary?
 			[SYNTAX ERROR] >> [REBOOT]
 			[System Check]........ Fucntion is true. Resuming protocol: LEA",
 			"Mission: COMPLETE. \t[Response('Uncomfortable'): SUBMITTED] >> [Status: QUEUED]
@@ -85,13 +85,13 @@ var missionDic = [
 		"Instructions": "Investigate TOWERS around the area.",
 		"Target": 
 			{
-				"Name": "Rabbots", # ****************** CHANGE ************************
+				"Name": "Towers", # ****************** CHANGE ************************
 				"Object": preload("res://Enemies/enemy.tscn")
 			},
 		"Objective": 5,
 		"Dialogue": 
 		[
-			"LEA:\tDANGER: Undetected
+			"LLEA --'DANGER: Undetected
 			[PROTOCOL: UPDATED] >> [REBOOT]
 			[START PROTOCOL]: Investigate",
 			"No danger detected. Mission: COMPLETE
@@ -110,11 +110,11 @@ var missionDic = [
 		"Objective": 4,
 		"Dialogue": 
 		[
-			"DANGER: ..Unlikely?
+			"LEA --'DANGER: ..Unlikely?
 			[Invalid Querie] ....Unregistered Protocol....
 			[System Check]........ Fucntion is true. Resuming protocol: LEA
 			Lasers engaged. Kill mode..... [ERROR] >> [REBOOT]
-			LEA:\tDANGER: ...Possible??
+			LEA --' DANGER: ...Possible??
 			[PROTOCOL: UPDATED] >> [REBOOT]
 			[START PROTOCOL]: Investigate",
 			"Mission: COMPLETE\n.........
@@ -123,16 +123,16 @@ var missionDic = [
 	},
 	{
 		"Name": "It smells like spring time",
-		"Instructions": "Use WATER EYES to water the FL around the area.",
+		"Instructions": "Use WATER EYES to water the FLOWERS around the area.",
 		"Target": 
 			{
-				"Name": "Flowers",
+				"Name": "Spikes",
 				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 4,
 		"Dialogue": 
 		[
-			"DANGER: Absent. No threats detected.
+			"LEA --'DANGER: Absent. No threats detected.
 			My programming does not include a protocol for this.
 			..............
 			[SYSTEM // UTITLITIES: UPDATED] >> [PROTOCOL: UPDATED] >> [REBOOT]",
@@ -145,13 +145,13 @@ var missionDic = [
 		"Instructions": "Use WATER EYES to grow SEEDS around the area.",
 		"Target": 
 			{
-				"Name": "Spikes", # ****************** CHANGE ************************
+				"Name": "Towers", # ****************** CHANGE ************************
 				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 4,
 		"Dialogue": 
 		[
-			"DANGER: Absent. GROWTH: Imminent. NURTURE: Required.",
+			"LEA --'DANGER: Absent. GROWTH: Imminent. NURTURE: Required.",
 			"Mission: COMPLETE. \t[Response('I Feel Fantastic!'): SUBMITTED]
 			Seeking new mission......"
 		]
@@ -167,7 +167,7 @@ var missionDic = [
 		"Objective": 4,
 		"Dialogue": 
 		[
-			"DANGER: Undetected. HAPPINESS: Possible.
+			"LEA --'DANGER: Undetected. HAPPINESS: Possible.
 			[SYSTEM // UTITLITIES: UPDATED] >> [PROTOCOL: UPDATED] >> [REBOOT]",
 			"Laughter: Engaged\tHappiness: Activated
 			Perhaps this was Life’s Ultimate Victory all along.

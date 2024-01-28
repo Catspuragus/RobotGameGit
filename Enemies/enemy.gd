@@ -87,3 +87,5 @@ func _on_de_aggro_area_exited(area):
 func _on_navigation_agent_2d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
 	move_and_slide()
+
+

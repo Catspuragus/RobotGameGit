@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var roll_speed = 120
 
 @onready var gun = 0 #if you're going to start gronk off with something, you must set its state to pickedup
+@onready var health = 10
 
 var can_pick_up = false
 var weapon_can_be_picked = 0
@@ -108,3 +109,17 @@ func _on_roll_time_timeout():
 	print("OK")
 	$RollTime.stop()
 	pass # Replace with function body.
+
+func getHurt():
+	var world = get_tree().get_root().get_child(1)
+	world.hurtPlayer()
+	health -= 1
+	
+func getHealth():
+	return health
+	
+#func _on_detect_collision_body_entered(body):
+#	print("Player collision")
+#	if body.name == "Enemy" || body.name == "Spikes":
+#		print(body.name)
+#		getHurt()

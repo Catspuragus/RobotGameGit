@@ -7,7 +7,7 @@ var completedMissions = 0 # ^^
 var levelComplete: bool = false # condition to progress to next level
 var worldType # color scheme (or overlay) mayhaps
 var worldSize # for generation in walker script
-var worldEnemies # ^^
+var worldIntro # ^^
 var worldDescription = Array() # in case I won't to send it all at once (or could be use for narrative // just str)
 
 var thePlayer
@@ -21,8 +21,9 @@ var levelsList = {
 		{
 			"Type": 1,
 			"Size": 8,
-			#"Enemies": 0,
-			# Dialouge? probably will be a part of missions class
+			"Introduction": 
+					"DANGER: Imminent. Lasers engaged. Kill Mode activated. 
+					MISSION will be achieved.",
 			"Missions":
 				[
 					0,1,2
@@ -32,8 +33,9 @@ var levelsList = {
 		{
 			"Type": 1,
 			"Size": 1,
-			#"Enemies": 0,
-			# Dialouge? probably will be a part of missions class
+			"Introduction": 
+					"Systems re-calibrated... 
+					Time to carry out my purpose and achieve the ultimate victory.",
 			"Missions":
 				[
 					3,4,5
@@ -43,8 +45,11 @@ var levelsList = {
 		{
 			"Type": 0,
 			"Size": 0,
-			#"Enemies": 0,
-			# Dialouge? probably will be a part of missions class
+			"Introduction": 
+					"Systems re-calibrated... 
+					Time to carry out my purpose. 
+					Ultimate victory feels imminent."
+				,
 			"Missions":
 				[
 					6,7,8
@@ -57,12 +62,14 @@ func _init(levNum = 1):#, type = 0, size = 0, enemies = 0, m = []):
 	self.worldNum = levNum
 	self.worldType = self.levelsList[levNum]["Type"]
 	self.worldSize = self.levelsList[levNum]["Size"]
-	#self.worldEnemies = self.levelsList[levNum]["Enemies"]	
-	self.worldDescription = [self.worldType, self.worldSize, self.worldEnemies]
+	self.worldIntro = self.levelsList[levNum]["Introduction"]	
+	#self.worldDescription = [self.worldType, self.worldSize, self.worldEnemies]
 	self.missions = self.levelsList[levNum]["Missions"]
 	
 	completedMissions = 0
 	levelComplete =  false
+	#if levNum != 0:
+	#startText()
 	currMission = Mission.new(missions[completedMissions])
 	
 	print(self.currMission.getObjectiveGoal())
@@ -90,14 +97,14 @@ func getPlayer():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#startText()
 	add_child(newTB)
-	sendText()
+	startText() # Level Intro
+	displayMission()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if currMission.getMissionComplete():
-		print("Entering sleep mode") # queue in textbox
+		sendText()
 		self.incrimentMissions()
 
 func incrimentMissions():
@@ -106,17 +113,22 @@ func incrimentMissions():
 		print(self.missions.size())
 		print(self.completedMissions)
 		self.currMission = Mission.new(missions[completedMissions])
-		sendText()
+		displayMission()
 
 func startText():
-	#tb.queueText("This came from the level")
-	pass
+	sendText(self.worldIntro.split("\n"))
+		
+func sendText(mes = currMission.getDialogue()):
+	for str in mes:
+		newTB.queueText(str)
+	#newTB.queueText(currMission.getMissionText())
+	
+func displayMission():
+	sendText()
+	newTB.queueText(currMission.getMissionText())
 
-func sendText(this = newTB):
-	for str in currMission.getDialogue():
-		this.queueText(str)
-	this.queueText(currMission.getMissionText())
-	
-	
+func incrGoalCount():
+	currMission.incrimentCount()
+
 func getLevelComplete():
 	return !(self.completedMissions < self.missions.size())

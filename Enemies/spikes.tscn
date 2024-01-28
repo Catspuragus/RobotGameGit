@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cld1jhnr5mw4b"]
+[gd_scene load_steps=5 format=3 uid="uid://vbabamddrw50"]
 
 [ext_resource type="Script" path="res://Enemies/spikes.gd" id="1_r2r0j"]
 [ext_resource type="Texture2D" uid="uid://ck7lqp1h7mtq" path="res://Enemies/spikes.png" id="2_54d3x"]

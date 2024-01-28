@@ -12,12 +12,15 @@ const Spikes = preload("res://Enemies/spikes.tscn")
 
 var borders = Rect2(1,1,100,80)
 
+var playerHealth = 10
 var currLevel
 var temp_rooms = []
 var objectivesMet = 0
-
+var listObjects = []
 var exitPP: Vector2
 
+@onready var healthText = $UI/HP
+@onready var countText = $UI/Count
 @onready var tileMap = $Mangrove
 @onready var tileMap2 = $"Dirt Path"
 @onready var tileMap3 = $"Rock_Path"
@@ -136,15 +139,24 @@ func generate_level():
 #							add_child(spikes)
 #							spikes.global_position = new_step2 + Vector2(16,16)
 #							spike_spawnz += 1
+	playerHealth = 10
 	spawnObjectives()
 
 func forceMission():
 	if currLevel.getLevelComplete():
+		currLevel.sendText(["Entering sleep mode"])
 		incriment_level()
 	else:
 		currLevel.incrimentMissions()
 		objectivesMet = 0
 		spawnObjectives()
+
+func hurtPlayer():
+	playerHealth -=1 
+	
+func incrGoalCount():
+	objectivesMet += 1
+	currLevel.incrGoalCount()
 	
 func spawnObjectives():
 	var spawnedObjectives = 0
@@ -166,6 +178,7 @@ func spawnObjectives():
 							var obj = objectiveType[1].instantiate() # object preload from level class
 							add_child(obj)
 							spawnedObjectives+=1
+							listObjects.append(obj)
 							match objectiveType[0]: # object name from level class
 								"Rabbots":
 									obj.home_pos = new_step2 + Vector2(16,16)
@@ -182,12 +195,17 @@ func spawnObjectives():
 									obj.sprite = 1
 									obj.updateSprite()
 									#spawnedObjectives += 1
-								"Flowers":
+								"Towers":
 									obj.global_position = new_step2 + Vector2(16,16)
 									obj.sprite = 0
 									obj.updateSprite()
 									#spawnedObjectives += 1
 								
 func _physics_process(delta):
+	healthText.text = "HP: " + str(playerHealth)
+	countText.text = "REMAINING: " + str(currLevel.getObjectiveGoal() - objectivesMet)
+	if playerHealth <= 0:
+		reload_level()
+		
 	if objectivesMet >= currLevel.getObjectiveGoal():
 		forceMission()

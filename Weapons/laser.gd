@@ -47,4 +47,4 @@ func _physics_process(delta):
 				if coll_obj.hp <= 0:
 					coll_obj.queue_free()
 					var world = get_tree().get_root().get_child(1)
-					world.objectivesMet += 1
+					world.incrGoalCount()
