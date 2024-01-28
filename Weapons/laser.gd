@@ -43,7 +43,6 @@ func _physics_process(delta):
 			
 			line.add_point(raycastcoll)
 			if coll_obj.is_in_group("kill"):
-				coll_obj.hp -= 30 * delta
+				coll_obj.hp -= 10 * delta
 				if coll_obj.hp <= 0:
 					coll_obj.queue_free()
-				print(coll_obj.hp)

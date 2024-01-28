@@ -38,14 +38,22 @@ func _physics_process(_delta):
 			$AnimationPlayer.play("Right")
 		else:
 			$AnimationPlayer.play("Left")
+	else:
+		var dir = rad_to_deg(velocity.angle())
+		if dir > -90 and dir < 90:
+			$AnimationPlayer.play("Idle_Right")
+		else:
+			$AnimationPlayer.play("Idle_Left")
 	
 	nav_agent.set_velocity(intended_velocity)
 
 func recalc_path():
 	if chase == 1 && global_position.distance_to(target_position) > 75:
 		nav_agent.target_position = target_position
+		
 	elif chase == 0:
 		nav_agent.target_position = global_position
+		
 
 
 func _on_recalculate_timeout():

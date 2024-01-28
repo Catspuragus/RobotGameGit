@@ -17,3 +17,4 @@ collide_with_areas = true
 z_index = -1
 points = PackedVector2Array(0, 0, 0, 0)
 width = 2.0
+default_color = Color(0.909804, 0.254902, 0.254902, 1)

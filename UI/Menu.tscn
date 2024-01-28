@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3rqmxn6yhjtq"]
+[gd_scene load_steps=5 format=3 uid="uid://c3rqmxn6yhjtq"]
 
 [ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_c6exc"]
 [ext_resource type="Texture2D" uid="uid://2p2vo05yex4x" path="res://UI/robot_swag.png" id="2_l7i01"]
+[ext_resource type="Texture2D" uid="uid://cd3d3hos1etp6" path="res://UI/green1.png" id="2_ongm3"]
+[ext_resource type="Texture2D" uid="uid://11vntjxud1y" path="res://UI/title.png" id="3_f2tjk"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,6 +13,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c6exc")
+
+[node name="Green1" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(640.75, 359.75)
+scale = Vector2(6.70725, 6.75688)
+texture = ExtResource("2_ongm3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -43,6 +51,11 @@ text = "Quit"
 position = Vector2(954, 472)
 scale = Vector2(3, 3)
 texture = ExtResource("2_l7i01")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(282, 180)
+scale = Vector2(3, 3)
+texture = ExtResource("3_f2tjk")
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

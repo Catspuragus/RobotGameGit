@@ -8,6 +8,7 @@ const Gun = preload("res://Weapons/Old_Weapons/shotgun.tscn")
 const Pistol = preload("res://Weapons/Old_Weapons/pistol.tscn")
 const Enemy = preload("res://Enemies/enemy.tscn")
 const Bunny = preload("res://Enemies/cutebunny.tscn")
+const Spikes = preload("res://Enemies/spikes.tscn")
 
 var borders = Rect2(1,1,100,80)
 
@@ -33,7 +34,7 @@ func reload_level():
 func generate_level():
 	randomize()
 	var walker = Walker.new(Vector2(50,30), borders)
-	var map = walker.walk(41)
+	var map = walker.walk(55)
 	
 	var player = Player.instantiate()
 	add_child(player)
@@ -83,9 +84,13 @@ func generate_level():
 	
 	var enemy_spawnz = 0
 	var max_enemyz = 5
+	
+	var spike_spawnz = 0
+	var max_spikez = 5
+	
 	var temp_rooms = walker.random_room(end_room)
 	
-	while bunny_spawnz < max_bunz && enemy_spawnz < max_enemyz:
+	while bunny_spawnz < max_bunz && enemy_spawnz < max_enemyz && spike_spawnz < max_spikez:
 		for room in temp_rooms:
 			var top_left_corner = (room.position - room.size/2).ceil()
 			for y in room.size.y:
@@ -104,5 +109,11 @@ func generate_level():
 							var bunny = Bunny.instantiate()
 							add_child(bunny)
 							bunny.global_position = new_step2 + Vector2(16,16)
-							bunny.target_position = exit.global_position + Vector2(randi_range(64,-64), randi_range(64,-64))
+							bunny.target_position = exit.global_position + Vector2(randi_range(55,-55), randi_range(55,-55))
 							bunny_spawnz += 1
+							
+						elif randf() <= .05 && bunny_spawnz < max_enemyz:
+							var spikes = Spikes.instantiate()
+							add_child(spikes)
+							spikes.global_position = new_step2 + Vector2(16,16)
+							spike_spawnz += 1
