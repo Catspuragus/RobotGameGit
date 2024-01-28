@@ -118,8 +118,15 @@ func getHurt():
 func getHealth():
 	return health
 	
-#func _on_detect_collision_body_entered(body):
-#	print("Player collision")
-#	if body.name == "Enemy" || body.name == "Spikes":
-#		print(body.name)
-#		getHurt()
+
+func _on_detect_collision_body_entered(body):
+	print("Player collision")
+	
+	var c = []
+	for char in body.name.split("@"):
+		c.append(char)
+	
+	if (c[0] == "" && c[1] == "CharacterBody2D" ) || body.name == "Enemy" || body.name == "Spikes":
+		getHurt()
+	else:
+		print(body.name)

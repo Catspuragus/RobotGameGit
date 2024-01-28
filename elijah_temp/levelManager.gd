@@ -72,9 +72,9 @@ func _init(levNum = 1):#, type = 0, size = 0, enemies = 0, m = []):
 	#startText()
 	currMission = Mission.new(missions[completedMissions])
 	
-	print(self.currMission.getObjectiveGoal())
+	#print(self.currMission.getObjectiveGoal())
 	
-	print(self.currMission.getTargetObject())
+	#print(self.currMission.getTargetObject())
 	
 
 func getLevelStatus() -> bool:
@@ -110,8 +110,8 @@ func _process(delta):
 func incrimentMissions():
 	self.completedMissions+=1
 	if !self.getLevelComplete():
-		print(self.missions.size())
-		print(self.completedMissions)
+		#print(self.missions.size())
+		#print(self.completedMissions)
 		self.currMission = Mission.new(missions[completedMissions])
 		displayMission()
 

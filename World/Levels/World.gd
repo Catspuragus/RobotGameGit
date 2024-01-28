@@ -152,7 +152,7 @@ func forceMission():
 		spawnObjectives()
 
 func hurtPlayer():
-	playerHealth -=1 
+	playerHealth -= 1 
 	
 func incrGoalCount():
 	objectivesMet += 1
@@ -195,11 +195,17 @@ func spawnObjectives():
 									obj.sprite = 1
 									obj.updateSprite()
 									#spawnedObjectives += 1
-								"Towers":
+								"Flowers":
 									obj.global_position = new_step2 + Vector2(16,16)
 									obj.sprite = 0
 									obj.updateSprite()
 									#spawnedObjectives += 1
+								
+								"Towers":
+									pass
+								
+								"Trees":
+									pass
 								
 func _physics_process(delta):
 	healthText.text = "HP: " + str(playerHealth)
