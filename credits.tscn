@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsvc5coa28b8w"]
+
+[ext_resource type="Texture2D" uid="uid://cd3d3hos1etp6" path="res://UI/green1.png" id="2_vyr4f"]
+[ext_resource type="Texture2D" uid="uid://11vntjxud1y" path="res://UI/title.png" id="3_snt1p"]
+[ext_resource type="AudioStream" uid="uid://bxvf6llojx6ha" path="res://Audio/level3.mp3" id="4_mxmnl"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Green1" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(640.75, 359.75)
+scale = Vector2(6.70725, 6.75688)
+texture = ExtResource("2_vyr4f")
+
+[node name="Title" type="Sprite2D" parent="."]
+position = Vector2(282, 180)
+scale = Vector2(3, 3)
+texture = ExtResource("3_snt1p")
+
+[node name="Main_Menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mxmnl")
+autoplay = true
+
+[node name="TextEdit" type="TextEdit" parent="Main_Menu"]
+offset_left = 363.0
+offset_top = 318.0
+offset_right = 1031.0
+offset_bottom = 627.0
+theme_override_colors/background_color = Color(0, 0, 0, 0.521569)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "Clancy! - Programming, Art, Music
+Elijah - Programming, Systems Design
+Bells - Art
+Kelsey - Narrative
+Owen - *Eaten by the wolves*
+*** ALL - Game Design and Being Cool ***"
+editable = false
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false

@@ -64,6 +64,11 @@ func _init(levNum = 1):#, type = 0, size = 0, enemies = 0, m = []):
 	completedMissions = 0
 	levelComplete =  false
 	currMission = Mission.new(missions[completedMissions])
+	
+	print(self.currMission.getObjectiveGoal())
+	
+	print(self.currMission.getTargetObject())
+	
 
 func getLevelStatus() -> bool:
 	if self.completedMissions < missions.size():
@@ -110,6 +115,7 @@ func startText():
 func sendText(this = newTB):
 	for str in currMission.getDialogue():
 		this.queueText(str)
+	this.queueText(currMission.getMissionText())
 	
 	
 func getLevelComplete():

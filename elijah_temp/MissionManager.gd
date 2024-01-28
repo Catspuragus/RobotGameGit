@@ -17,11 +17,11 @@ var missionDic = [
 		"Target": 
 			{
 				"Name": "Spikes",
-				"Object": preload("res://Enemies/enemy.tscn")
+				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 6,
 		"Dialogue": [
-			"LEA:\tDANGER: DETECTED. Mines present in area. Must destroy.",
+			"LEA:\tDANGER: DETECTED. Hazards present in area. Must destroy.",
 			"Mission: COMPLETE\n...........
 			Seeking new mission......"
 		]
@@ -31,8 +31,8 @@ var missionDic = [
 		"Instructions": "Use LASER EYES to destroy guard towers.",
 		"Target": 
 			{
-				"Name": "Tower",
-				"Object": preload("res://Enemies/enemy.tscn")
+				"Name": "Spikes", # ****************** CHANGE ************************
+				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 3,
 		"Dialogue": [
@@ -49,8 +49,8 @@ var missionDic = [
 		"Instructions": "Use LASER EYES to destroy Rab-bots.",
 		"Target": 
 			{
-				"Name": "Rab-bots",
-				"Object": preload("res://Enemies/cutebunny.tscn")
+				"Name": "Rabbots",
+				"Object": preload("res://Enemies/enemy.tscn")
 			},
 		"Objective": 4,
 		"Dialogue": [
@@ -67,8 +67,8 @@ var missionDic = [
 		"Instructions": "Use LASER EYES to destroy the SPIKES scattered around the area.",
 		"Target": 
 			{
-				"Name": "Spikes?",
-				"Object": preload("res://Enemies/enemy.tscn")
+				"Name": "Spikes",
+				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 7,
 		"Dialogue": 
@@ -85,7 +85,7 @@ var missionDic = [
 		"Instructions": "Investigate TOWERS around the area.",
 		"Target": 
 			{
-				"Name": "Towers?",
+				"Name": "Rabbots", # ****************** CHANGE ************************
 				"Object": preload("res://Enemies/enemy.tscn")
 			},
 		"Objective": 5,
@@ -104,7 +104,7 @@ var missionDic = [
 		"Instructions": "Collect the Rab-bots.",
 		"Target": 
 			{
-				"Name": "Rab-bots?",
+				"Name": "Bunny",
 				"Object": preload("res://Enemies/cutebunny.tscn")
 			},
 		"Objective": 4,
@@ -127,7 +127,7 @@ var missionDic = [
 		"Target": 
 			{
 				"Name": "Flowers",
-				"Object": preload("res://Enemies/enemy.tscn")
+				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 4,
 		"Dialogue": 
@@ -145,8 +145,8 @@ var missionDic = [
 		"Instructions": "Use WATER EYES to grow SEEDS around the area.",
 		"Target": 
 			{
-				"Name": "Seeds",
-				"Object": preload("res://Enemies/enemy.tscn")
+				"Name": "Spikes", # ****************** CHANGE ************************
+				"Object": preload("res://Enemies/spikes.tscn")
 			},
 		"Objective": 4,
 		"Dialogue": 
@@ -161,7 +161,7 @@ var missionDic = [
 		"Instructions": "Use LASER EYES to fences surrounding the bunnies.",
 		"Target": 
 			{
-				"Name": "Rabbits",
+				"Name": "Bunny",
 				"Object": preload("res://Enemies/cutebunny.tscn")
 			},
 		"Objective": 4,

@@ -14,6 +14,7 @@ var borders = Rect2(1,1,100,80)
 
 var currLevel
 var temp_rooms = []
+var objectivesMet = 0
 
 var exitPP: Vector2
 
@@ -30,14 +31,17 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("vk_backslash"):
 		incriment_level()
-		
+
 	if event.is_action_pressed("ordE"):
 		forceMission()
-				
+	pass
+	
 func incriment_level():
-	if(Global.Level < 5 - 1): #i put -1 cause it starts off at 0 and i dont want to do math (4)
+	if(Global.Level < 3 - 1): #i put -1 cause it starts off at 0 and i dont want to do math (3)
 		Global.Level += 1
 		reload_level()
+	else:
+		get_tree().change_scene_to_file("res://credits.tscn")
 	
 func reload_level():
 	get_tree().reload_current_scene()
@@ -47,7 +51,7 @@ func generate_level():
 	add_child(currLevel)
 	randomize()
 	var walker = Walker.new(Vector2(50,30), borders) # starting posistion, room size
-	var map = walker.walk(55) # total steps (level size basically)?
+	var map = walker.walk(100) # total steps (level size basically)?
 	
 	var player = Player.instantiate()
 	add_child(player)
@@ -139,6 +143,8 @@ func forceMission():
 		incriment_level()
 	else:
 		currLevel.incrimentMissions()
+		objectivesMet = 0
+		spawnObjectives()
 	
 func spawnObjectives():
 	var spawnedObjectives = 0
@@ -156,12 +162,12 @@ func spawnObjectives():
 					var new_step = top_left_corner + Vector2(x,y)
 					var new_step2 = new_step*32
 					if borders.has_point(new_step) && new_step2.distance_to(pp.global_position) > 150:
-						if randf() <= .05:
+						if randf() <= .05 && spawnedObjectives < maxSpawns:
 							var obj = objectiveType[1].instantiate() # object preload from level class
 							add_child(obj)
 							spawnedObjectives+=1
 							match objectiveType[0]: # object name from level class
-								"Tree":
+								"Rabbots":
 									obj.home_pos = new_step2 + Vector2(16,16)
 									obj.global_position = new_step2 + Vector2(16,16)
 									#spawnedObjectives += 1
@@ -173,5 +179,15 @@ func spawnObjectives():
 									
 								"Spikes":
 									obj.global_position = new_step2 + Vector2(16,16)
+									obj.sprite = 1
+									obj.updateSprite()
+									#spawnedObjectives += 1
+								"Flowers":
+									obj.global_position = new_step2 + Vector2(16,16)
+									obj.sprite = 0
+									obj.updateSprite()
 									#spawnedObjectives += 1
 								
+func _physics_process(delta):
+	if objectivesMet >= currLevel.getObjectiveGoal():
+		forceMission()

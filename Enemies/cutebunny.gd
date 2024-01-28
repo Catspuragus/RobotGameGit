@@ -10,6 +10,7 @@ var speed = 50
 var aggro := 0
 var chase := 0
 var fed := false
+var finished = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,14 +47,17 @@ func _physics_process(_delta):
 			$AnimationPlayer.play("Idle_Left")
 	
 	nav_agent.set_velocity(intended_velocity)
+	
+	if global_position.distance_to(target_position) <= 75 && !finished:
+		finished = true
+		var world = get_tree().get_root().get_child(1)
+		world.objectivesMet += 1
 
 func recalc_path():
 	if chase == 1 && global_position.distance_to(target_position) > 75:
 		nav_agent.target_position = target_position
-		
 	elif chase == 0:
 		nav_agent.target_position = global_position
-		
 
 
 func _on_recalculate_timeout():
