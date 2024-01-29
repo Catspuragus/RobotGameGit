@@ -3,6 +3,8 @@ extends Node2D
 var firing := 0
 var bounces = 1
 const max_length = 2000
+const RED = "e84141"
+const BLUE = "0084fe"
 
 @onready var line = $Line2D
 @onready var ray = $RayCast2D
@@ -48,3 +50,9 @@ func _physics_process(delta):
 					coll_obj.queue_free()
 					var world = get_tree().get_root().get_child(1)
 					world.incrGoalCount()
+
+func setRed():
+	line.default_color = RED
+
+func setBlue():
+	line.default_color = BLUE

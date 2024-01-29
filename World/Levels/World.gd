@@ -50,7 +50,7 @@ func reload_level():
 	get_tree().reload_current_scene()
 
 func generate_level():
-	currLevel = Level.new(1)
+	currLevel = Level.new(Global.Level + 1)
 	add_child(currLevel)
 	randomize()
 	var walker = Walker.new(Vector2(50,30), borders) # starting posistion, room size
@@ -71,11 +71,12 @@ func generate_level():
 	add_child(exit)
 	
 	var end_room = walker.get_end_room()
-	exit.position = end_room.position*32
+	exitPP = end_room.position*32
+	exit.position = exitPP
 #	exit.connect("leaving_level", self, "reload_level")
 	temp_rooms = (walker.random_room(end_room))
 	
-	exitPP = end_room.position*32
+
 #	var gun2 = Pistol.instantiate()
 #	add_child(gun2)
 #	gun2.global_position = walker.path_history[1]*32
@@ -143,6 +144,7 @@ func generate_level():
 	spawnObjectives()
 
 func forceMission():
+	#listObjects.clear()
 	if currLevel.getLevelComplete():
 		currLevel.sendText(["Entering sleep mode"])
 		incriment_level()
@@ -178,7 +180,7 @@ func spawnObjectives():
 							var obj = objectiveType[1].instantiate() # object preload from level class
 							add_child(obj)
 							spawnedObjectives+=1
-							listObjects.append(obj)
+							#listObjects.append(obj)
 							match objectiveType[0]: # object name from level class
 								"Rabbots":
 									obj.home_pos = new_step2 + Vector2(16,16)
@@ -202,10 +204,10 @@ func spawnObjectives():
 									#spawnedObjectives += 1
 								
 								"Towers":
-									pass
+									obj.global_position = new_step2 + Vector2(16,16)
 								
 								"Trees":
-									pass
+									obj.global_position = new_step2 + Vector2(16,16)
 								
 func _physics_process(delta):
 	healthText.text = "HP: " + str(playerHealth)
