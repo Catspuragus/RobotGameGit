@@ -144,14 +144,11 @@ func generate_level():
 	spawnObjectives()
 
 func forceMission():
-	#listObjects.clear()
+	currLevel.finishMission()
 	if currLevel.getLevelComplete():
-		currLevel.sendText(["Entering sleep mode"])
 		incriment_level()
 	else:
-		currLevel.incrimentMissions()
 		spawnObjectives()
-		print()
 
 func hurtPlayer():
 	playerHealth -= 1 

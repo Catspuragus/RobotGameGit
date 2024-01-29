@@ -103,17 +103,25 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if currMission.getMissionComplete():
-		sendText()
+#	if currMission.getMissionComplete():
+#		sendText()
 #		self.incrimentMissions()
+		pass
 
+func finishMission():
+		sendText() # completion text, second in array
+		self.incrimentMissions()
+		
 func incrimentMissions():
 	self.completedMissions+=1
 	if !self.getLevelComplete():
-		#print(self.missions.size())
-		#print(self.completedMissions)
+		print("MISSIONS: " + str(self.missions.size()))
+		print("COMPLETED: " + str(self.completedMissions))
 		self.currMission = Mission.new(missions[completedMissions])
 		displayMission()
+	else:
+		sendText(["...Entering rest mode..."])
+		print("LEVEL FINISHED")
 
 func startText():
 	sendText(self.worldIntro.split("\n"))

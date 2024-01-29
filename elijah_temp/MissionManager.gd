@@ -215,7 +215,7 @@ func getObjectiveGoal():
 func getDialogue(thisD: int = self.dialogueCount):
 	# verify if there is any more dialogue
 	if thisD >= self.listDialogue.size():
-		return "There is nothing left to say"
+		return ["There is nothing left to say"]
 	
 	self.dialogueCount+=1
 	return self.listDialogue[thisD].split("\n")
