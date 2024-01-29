@@ -32,11 +32,11 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("vk_backslash"):
-		incriment_level()
-
-	if event.is_action_pressed("ordE"):
-		forceMission()
+#	if event.is_action_pressed("vk_backslash"):
+#		incriment_level()
+#
+#	if event.is_action_pressed("ordE"):
+#		forceMission()
 	pass
 	
 func incriment_level():
@@ -150,8 +150,8 @@ func forceMission():
 		incriment_level()
 	else:
 		currLevel.incrimentMissions()
-		objectivesMet = 0
 		spawnObjectives()
+		print()
 
 func hurtPlayer():
 	playerHealth -= 1 
@@ -205,6 +205,8 @@ func spawnObjectives():
 								
 								"Towers":
 									obj.global_position = new_step2 + Vector2(16,16)
+									obj.sprite = 0
+									obj.updateSprite()
 								
 								"Trees":
 									obj.global_position = new_step2 + Vector2(16,16)
@@ -216,4 +218,6 @@ func _physics_process(delta):
 		reload_level()
 		
 	if objectivesMet >= currLevel.getObjectiveGoal():
+		objectivesMet = 0
 		forceMission()
+		print(objectivesMet, currLevel.getObjectiveGoal(), "TEXT")

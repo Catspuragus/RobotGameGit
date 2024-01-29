@@ -31,16 +31,16 @@ var missionDic = [
 		"Instructions": "Use LASER EYES to destroy guard towers.",
 		"Target": 
 			{
-				"Name": "Towers", # ****************** CHANGE ************************
+				"Name": "Spikes", # ****************** CHANGE ************************
 				"Object": preload("res://Enemies/spikes.tscn")
 			},
-		"Objective": 3,
+		"Objective": 6,
 		"Dialogue": [
 			"LEA --'DANGER: DETECTED.... Guard towers identified. Destruction initiated.",
 			"Mission: COMPLETE
 			.........
 			[Invalid Querie]..........
-			[System Check]........ Fucntion is true. Resuming protocol: LEA
+			[System Check]........ Function is true. Resuming protocol: LEA
 			Seeking new mission......"
 		]
 	},
@@ -58,7 +58,7 @@ var missionDic = [
 			"Mission: ...?...
 			[Invalid Querie]....Unregistered Input......?
 			[SYNTAX ERROR] >> [REBOOT]
-			[System Check]........ Fucntion is true. Resuming protocol: LEA
+			[System Check]........ Function is true. Resuming protocol: LEA
 			Mission: COMPLETE."
 		]
 	},
@@ -75,7 +75,7 @@ var missionDic = [
 		[
 			"LEA --'DANGER: ..uncertain.....Destruction... unnecessary?
 			[SYNTAX ERROR] >> [REBOOT]
-			[System Check]........ Fucntion is true. Resuming protocol: LEA",
+			[System Check]........ Function is true. Resuming protocol: LEA",
 			"Mission: COMPLETE. \t[Response('Uncomfortable'): SUBMITTED] >> [Status: QUEUED]
 			Seeking new mission......"
 		]

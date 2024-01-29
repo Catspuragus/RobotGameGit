@@ -105,7 +105,7 @@ func _ready():
 func _process(delta):
 	if currMission.getMissionComplete():
 		sendText()
-		self.incrimentMissions()
+#		self.incrimentMissions()
 
 func incrimentMissions():
 	self.completedMissions+=1
